@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dappers.Repository
 {
-    public class OracleAdapter<T> : BaseRepository<T>, IDataBase<T> where T : class, new()
+    internal class OracleAdapter<T> : BaseRepository<T>, IDataBase<T> where T : class, new()
     {
         public OracleAdapter(string connString)
         {

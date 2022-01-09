@@ -12,7 +12,7 @@ namespace Dappers.Repository
     /// <summary>
     /// 封装仓库
     /// </summary>
-    public class BaseRepository<T>
+    internal class BaseRepository<T>
     {
         protected string sqlConn { get; set; }
 

@@ -6,7 +6,7 @@ using Dapper;
 
 namespace Dappers.Repository
 {
-    public class SqlAdapter<T> : BaseRepository<T>, IDataBase<T> where T : class, new()
+    internal class SqlAdapter<T> : BaseRepository<T>, IDataBase<T> where T : class, new()
     {
         public SqlAdapter(string connString)
         {

@@ -8,7 +8,7 @@ using Dapper;
 
 namespace Dappers.Repository
 {
-    public class SqlAdapterAsync<T> : BaseRepositoryAsync<T>, IDataBaseAsync<T> where T : class, new()
+    internal class SqlAdapterAsync<T> : BaseRepositoryAsync<T>, IDataBaseAsync<T> where T : class, new()
     {
         public SqlAdapterAsync(string connString)
         {

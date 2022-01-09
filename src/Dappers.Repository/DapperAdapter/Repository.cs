@@ -4,14 +4,17 @@ using System.Data;
 
 namespace Dappers.Repository
 {
-    public class Repository<T> : IRepository<T> where T : class, new()
+    internal class Repository<T> : RepositoryBase<T>, IRepository<T> where T : class, new()
     {
-        public IDataBase<T> db;
+        private readonly IDataBase<T> db;
 
-        public Repository(IDataBase<T> iAdapter)
+        public Repository(string connString, DatabaseType dt = DatabaseType.SqlServer)
         {
-            this.db = iAdapter;
+            this.db = GetDataAdapter("Data Source=.;Initial Catalog=StudentDB;Integrated Security=True;", dt);
+
+            //this.db = GetDataAdapter(connString, dt);
         }
+
         /// <summary>
         /// 通用增删改
         /// </summary>

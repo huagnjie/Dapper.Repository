@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 
 namespace Dappers.Repository
 {
-    public class RepositoryAsync<T> : IRepositoryAsync<T> where T : class, new()
+    internal class RepositoryAsync<T> : RepositoryBase<T>, IRepositoryAsync<T> where T : class, new()
     {
-        public IDataBaseAsync<T> db;
+        private readonly IDataBaseAsync<T> db;
 
-        public RepositoryAsync(IDataBaseAsync<T> iDataBaseAsync)
+        public RepositoryAsync(string connString, DatabaseType dt = DatabaseType.SqlServer)
         {
-            this.db = iDataBaseAsync;
+            this.db = GetDataAdapterAsync(connString, dt);
         }
-
+        
         /// <summary>
         /// 通用增删改
         /// </summary>

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\BaseMethodUtility.cs" />
+    <Compile Include="Common\RepositoryBase.cs" />
     <Compile Include="DapperAdapterAsync\BaseRepositoryAsync.cs" />
     <Compile Include="DapperAdapterAsync\IDataBaseAsync.cs" />
     <Compile Include="DapperAdapterAsync\IRepositoryAsync.cs" />

@@ -6,7 +6,7 @@ using Dapper;
 
 namespace Dappers.Repository
 {
-    public class MySqlAdapter<T> : BaseRepository<T>, IDataBase<T> where T : class, new()
+    internal class MySqlAdapter<T> : BaseRepository<T>, IDataBase<T> where T : class, new()
     {
         public MySqlAdapter(string connString)
         {
