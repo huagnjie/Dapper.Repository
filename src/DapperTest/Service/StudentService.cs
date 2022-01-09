@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Dappers.Repository;
+using Repository;
 using DapperTest.Model;
 
 namespace DapperTest.Service

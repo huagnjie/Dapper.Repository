@@ -17,8 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Dappers.Repository\Dapper.Repository.csproj" />
-    <ProjectReference Include="..\GeneralTools\GeneralTools.csproj" />
+    <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>
 
 </Project>
