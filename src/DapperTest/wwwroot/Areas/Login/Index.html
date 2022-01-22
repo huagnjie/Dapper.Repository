@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input type="hidden" id="tokenValue" name="tokenValue" value="" />
+    <br /><br /><br />
+    <span>Token:</span><div id="txtval"></div><br />
+    <span>有效期:</span><div id="txtvalTime"></div><br />
+
+    <div>
+        <input type="button" value="获取Token" onclick="getToken()" /><br /><br /><br />
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        //获取token
+        function getToken() {
+            var data = JSON.stringify({ UserName: "admin", Password: "admin888" });
+            $.ajax({
+                type: "post",
+                url: "https://localhost:44336/api/Login/Login",
+                dataType: "json",
+                async: true,
+                data: data,
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log(data);
+                    $("#txtval").html(data.tnToken.tokenStr);
+                    $("#txtvalTime").html(new Date(data.tnToken.expires).Format("yyyy-MM-dd hh:mm"));
+                    $("#tokenValue").val(data.tnToken.tokenStr);
+
+                },
+                error: function (data) {
+                    console.log("错误" + data);
+                }
+            });
+        }
+        Date.prototype.Format = function (fmt) { //author: zhengsh 2016-9-5
+            var o = {
+                "M+": this.getMonth() + 1, //月份
+                "d+": this.getDate(), //日
+                "h+": this.getHours(), //小时
+                "m+": this.getMinutes(), //分
+                "s+": this.getSeconds(), //秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                "S": this.getMilliseconds() //毫秒
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+    </script>
+</body>
+</html>

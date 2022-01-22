@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DapperTest.Controllers
 {
-    [Produces("application/json")]
+    //[Produces("application/json")]
     public class HomeController : Controller
     {
         private readonly ILogger logger;
@@ -15,11 +15,16 @@ namespace DapperTest.Controllers
         {
             this.logger = logger;
         }
+        [HttpGet()]
         public IActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// 获取所有数据
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("GetStudentList")]
         public ObjectResult GetStudentList() {
             return new ObjectResult(BizInstance.StudentBusines.GetStudentList());

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DapperTest</name>
+    </assembly>
+    <members>
+        <member name="F:DapperTest.Controllers.BizInstance._lock">
+            <summary>
+            锁
+            </summary>
+        </member>
+        <member name="F:DapperTest.Controllers.BizInstance.studentBusines">
+            <summary>
+            注册StudentBusines
+            </summary>
+        </member>
+        <member name="M:DapperTest.Model.StudentModel.Create">
+            <summary>
+            新增调用
+            </summary>
+        </member>
+        <member name="M:DapperTest.Model.StudentModel.Create(System.String)">
+            <summary>
+            新增调用
+            </summary>
+        </member>
+        <member name="M:DapperTest.Model.StudentModel.Modify(System.String)">
+            <summary>
+            编辑调用
+            </summary>
+            <param name="keyValue"></param>
+        </member>
+        <member name="M:DapperTest.Model.StudentModel.Modify">
+            <summary>
+            编辑调用
+            </summary>
+        </member>
+    </members>
+</doc>
