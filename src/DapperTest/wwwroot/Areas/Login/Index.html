@@ -14,6 +14,8 @@
         <input type="button" value="获取Token" onclick="getToken()" /><br />
 
         <input type="button" value="验证Token" onclick="valiToken()" /><br />
+
+        <input type="button" value="获取List" onclick="GetStudent()" /><br />
     </div>
     <script src="../../Content/js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
@@ -61,6 +63,22 @@
                 dataType: "json",
                 async: true,
                 data: { token: $("#tokenValue").val() },
+                contentType: 'application/json',
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log("错误" + data);
+                }
+            });
+        }
+        function GetStudent() {
+            $.ajax({
+                type: "get",
+                url: "https://localhost:44336/api/User/GetStudentList",
+                dataType: "json",
+                async: true,
+                data: { Token: $("#tokenValue").val() },
                 contentType: 'application/json',
                 success: function (data) {
                     console.log(data);

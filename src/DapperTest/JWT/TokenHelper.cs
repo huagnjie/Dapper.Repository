@@ -135,6 +135,35 @@ namespace DapperTest.JWT
         /// 验证身份 验证签名的有效性
         /// </summary>
         /// <param name="encodeJwt"></param>
+        /// <returns></returns>
+        public TokenType ValiTokenState(string encodeJwt)
+        {
+            if (string.IsNullOrWhiteSpace(encodeJwt))
+                return TokenType.Fail;
+            var jwtArr = encodeJwt.Split('.');
+            if (jwtArr.Length < 3)//数据格式都不对直接pass
+                return TokenType.Fail;
+            var header = JsonConvert.DeserializeObject<Dictionary<string, string>>(Base64UrlEncoder.Decode(jwtArr[0]));
+            var payLoad = JsonConvert.DeserializeObject<Dictionary<string, string>>(Base64UrlEncoder.Decode(jwtArr[1]));
+            var hs256 = new HMACSHA256(Encoding.ASCII.GetBytes(_options.Value.IssuerSigningKey));
+            //验证签名是否正确（把用户传递的签名部分取出来和服务器生成的签名匹配即可）
+            if (!string.Equals(jwtArr[2], Base64UrlEncoder.Encode(hs256.ComputeHash(Encoding.UTF8.GetBytes(string.Concat(jwtArr[0], ".", jwtArr[1]))))))
+            {
+                return TokenType.Fail;
+            }
+            //其次验证是否在有效期内（必须验证）
+            var now = ToUnixEpochDate(DateTime.UtcNow);
+            if (!(now >= long.Parse(payLoad["nbf"].ToString()) && now < long.Parse(payLoad["exp"].ToString())))
+            {
+                return TokenType.Expired;
+            } 
+            return TokenType.Ok;
+        }
+
+        /// <summary>
+        /// 验证身份 验证签名的有效性
+        /// </summary>
+        /// <param name="encodeJwt"></param>
         /// <param name="validatePayLoad"></param>
         /// <param name="action"></param>
         /// <returns></returns>

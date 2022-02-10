@@ -1,10 +1,9 @@
-﻿using DapperTest.JWT;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DapperTest.Controllers
+namespace DapperTest.JWT
 {
     /// <summary>
     /// 返回类

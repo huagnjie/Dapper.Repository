@@ -35,6 +35,13 @@ namespace DapperTest.JWT
             , Func<Dictionary<string, string>, bool> validatePayLoad = null);
 
         /// <summary>
+        /// 验证身份 验证签名的有效性
+        /// </summary>
+        /// <param name="encodeJwt"></param>
+        /// <returns></returns>
+        TokenType ValiTokenState(string encodeJwt);
+
+        /// <summary>
         /// 带返回状态的Token验证
         /// </summary>
         /// <param name="encodeJwt">token</param>

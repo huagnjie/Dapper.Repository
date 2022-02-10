@@ -1,4 +1,5 @@
 using DapperTest.JWT;
+using DapperTest.JWT.Filter;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +37,7 @@ namespace DapperTest
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer();
+            services.AddScoped<TokenFilter>();
 
             #endregion
 
@@ -49,6 +51,26 @@ namespace DapperTest
                     Title = "DapperTest",
                     Description = "测试接口"
                 });
+                config.AddSecurityDefinition("JwtBearer", new OpenApiSecurityScheme()
+                {
+                    Description = "在输入框中输入请求头中需要添加的Jwt授权Token",
+                    Name = "Token",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT",
+                    Scheme = "Bearer"
+                });
+                //声明一个Scheme，注意下面的Id要和上面AddSecurityDefinition中的参数name一致
+                var scheme = new OpenApiSecurityScheme()
+                {
+                    Reference = new OpenApiReference() { Type = ReferenceType.SecurityScheme, Id = "JwtBearer" }
+                };
+                //注册全局认证（所有的接口都可以使用认证）
+                config.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    [scheme] = new string[0]
+                });
+
                 // 为 Swagger 设置xml文档注释路径
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -62,7 +84,8 @@ namespace DapperTest
 
             #endregion
 
-            services.AddCors(options => {
+            services.AddCors(options =>
+            {
                 options.AddPolicy("any", builder => { builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); });
             });
         }
