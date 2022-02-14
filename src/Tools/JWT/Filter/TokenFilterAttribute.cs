@@ -5,15 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DapperTest.JWT.Filter
+namespace Tools.JWT.Filter
 {
     /// <summary>
     /// 过滤器，判断是否需要Token验证
     /// </summary>
-    public class TokenFilter : Attribute, IActionFilter
+    public class TokenFilterAttribute : Attribute, IActionFilter
     {
         private ITokenHelper tokenHelper;
-        public TokenFilter(ITokenHelper _tokenHelper)
+        public TokenFilterAttribute(ITokenHelper _tokenHelper)
         {
             tokenHelper = _tokenHelper;
         }

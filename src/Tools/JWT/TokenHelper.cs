@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DapperTest.JWT
+namespace Tools.JWT
 {
     public class TokenHelper : ITokenHelper
     {

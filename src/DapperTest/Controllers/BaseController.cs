@@ -1,4 +1,4 @@
-﻿using DapperTest.JWT.Filter;
+﻿using Tools.JWT.Filter;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DapperTest.Controllers
 {
-    [ServiceFilter(typeof(TokenFilter))]
+    [ServiceFilter(typeof(TokenFilterAttribute))]
     [Route("api/[Controller]")]
     [ApiController]
 

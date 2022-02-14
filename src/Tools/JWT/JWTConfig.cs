@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DapperTest.JWT
+namespace Tools.JWT
 {
     /// <summary>
     /// 配置Token生成信息

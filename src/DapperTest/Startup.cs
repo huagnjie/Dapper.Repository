@@ -1,5 +1,5 @@
-using DapperTest.JWT;
-using DapperTest.JWT.Filter;
+using Tools.JWT;
+using Tools.JWT.Filter;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Reflection;
+using Tools.Log;
 
 namespace DapperTest
 {
@@ -37,7 +38,7 @@ namespace DapperTest
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer();
-            services.AddScoped<TokenFilter>();
+            services.AddScoped<TokenFilterAttribute>();
 
             #endregion
 
@@ -88,6 +89,8 @@ namespace DapperTest
             {
                 options.AddPolicy("any", builder => { builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); });
             });
+
+            services.AddScoped<ILogHelper,LogHelper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
