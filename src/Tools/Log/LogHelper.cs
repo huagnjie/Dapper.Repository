@@ -18,6 +18,40 @@ namespace Tools.Log
         }
 
         /// <summary>
+        /// 记录Log
+        /// </summary>
+        /// <param name="logType"></param>
+        /// <param name="strings"></param>
+        public void WriteLog(LogTypeState logType, string strings)
+        {
+            WriteLog(logType, strings, !string.IsNullOrEmpty(AppSettingsJson.Configuration["LogConfig:WriteLog"]));
+        }
+
+        /// <summary>
+        /// 记录Log
+        /// </summary>
+        /// <param name="logType"></param>
+        /// <param name="strings"></param>
+        /// <param name="isWrite">是否输出日志</param>
+        public void WriteLog(LogTypeState logType, string strings, bool isWrite)
+        {
+            string strPath = BaseUtil.baseDirectory + @"\log\";
+            WriteLog(strPath, logType, strings, isWrite);
+        }
+
+        /// <summary>
+        /// 记录Log
+        /// </summary>
+        /// <param name="strPath"></param>
+        /// <param name="logType"></param>
+        /// <param name="content"></param>
+        /// <param name="isWrite"></param>
+        public void WriteLog(string strPath, LogTypeState logType, string content, bool isWrite)
+        {
+            BlockQueueLog.QueueWriteLog(strPath, logType, content, isWrite);
+        }
+
+        /// <summary>
         /// 记录异常Log
         /// </summary>
         /// <param name="content"></param>
@@ -49,28 +83,6 @@ namespace Tools.Log
             }
             string strPath = BaseUtil.baseDirectory + @"\log\" + DateTime.Now.ToString("yyyyMM") + "\\";
             WriteLog(strPath, LogTypeState.Operation, content, true);
-        }
-
-        /// <summary>
-        /// 记录Log
-        /// </summary>
-        /// <param name="logType"></param>
-        /// <param name="strings"></param>
-        public void WriteLog(LogTypeState logType, string strings)
-        {
-            WriteLog(logType, strings, !string.IsNullOrEmpty(AppSettingsJson.Configuration["LogConfig:WriteLog"]));
-        }
-
-        /// <summary>
-        /// 记录Log
-        /// </summary>
-        /// <param name="logType"></param>
-        /// <param name="strings"></param>
-        /// <param name="isWrite">是否输出日志</param>
-        public void WriteLog(LogTypeState logType, string strings, bool isWrite)
-        {
-            string strPath = BaseUtil.baseDirectory + @"\log\";
-            WriteLog(strPath, logType, strings, isWrite);
         }
 
         /// <summary>
@@ -135,18 +147,6 @@ namespace Tools.Log
         public void WriteFile(string Strings)
         {
             WriteFile(LogTypeState.None, Strings);
-        }
-
-        /// <summary>
-        /// 记录Log
-        /// </summary>
-        /// <param name="strPath"></param>
-        /// <param name="logType"></param>
-        /// <param name="content"></param>
-        /// <param name="isWrite"></param>
-        public void WriteLog(string strPath, LogTypeState logType, string content, bool isWrite)
-        {
-            BlockQueueLog.QueueWriteLog(strPath, logType, content, isWrite);
         }
     }
 }
