@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperTest", "DapperTest\DapperTest.csproj", "{B0CE2EE1-71D0-4BA1-B684-384C47A983A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{4DD1A8F1-E361-40C8-BECB-87874D678A5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{4DD1A8F1-E361-40C8-BECB-87874D678A5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "Tools\Tools.csproj", "{6075539F-75D8-403C-BCCD-CF64D60812D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools", "Tools\Tools.csproj", "{6075539F-75D8-403C-BCCD-CF64D60812D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQJie", "RabbitMQ\RabbitMQJie.csproj", "{D06479E1-86E9-46D3-A30D-431901978CB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{6075539F-75D8-403C-BCCD-CF64D60812D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6075539F-75D8-403C-BCCD-CF64D60812D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6075539F-75D8-403C-BCCD-CF64D60812D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D06479E1-86E9-46D3-A30D-431901978CB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D06479E1-86E9-46D3-A30D-431901978CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D06479E1-86E9-46D3-A30D-431901978CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D06479E1-86E9-46D3-A30D-431901978CB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
